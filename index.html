@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEC Student Portal Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(189, 32, 38, 0.15);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            border-top: 6px solid #bd2026;
+        }
+
+        .logo-container {
+            margin-bottom: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .college-logo {
+            width: 150px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        h2 {
+            color: #bd2026;
+            margin-bottom: 0.2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4b5563;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.85rem;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            color: #1f2937;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #bd2026;
+            box-shadow: 0 0 0 3px rgba(189, 32, 38, 0.1);
+        }
+
+        .login-btn {
+            background-color: #bd2026;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 0.85rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 0.75rem;
+            box-shadow: 0 4px 12px rgba(189, 32, 38, 0.2);
+        }
+
+        .login-btn:hover {
+            background-color: #96161a;
+        }
+
+        .footer-text {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #9ca3af;
+            font-weight: 500;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background-color: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            width: 90%;
+            border-bottom: 5px solid #27ae60;
+        }
+
+        .modal-box h4 {
+            color: #27ae60;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-box p {
+            color: #4b5563;
+            margin-bottom: 1.75rem;
+            font-size: 1rem;
+        }
+
+        .close-btn {
+            background-color: #374151;
+            color: white;
+            border: none;
+            padding: 0.6rem 2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .close-btn:hover {
+            background-color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo-container">
+            <img class="college-logo" src="logo.png" alt="Adhiparasakthi Engineering College Logo">
+        </div>
+       
+        <h2>ADHIPARASAKTHI</h2>
+        <h3>Engineering College</h3>
+       
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="input-group">
+                <label for="username">Username / Register Number</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+            </div>
+           
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+           
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+       
+        <p class="footer-text">© Student Portal - Melmaruvathur</p>
+    </div>
+
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box">
+            <h4>Success!</h4>
+            <p>You have successfully logged into the APEC portal screen.</p>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('loginForm').reset();
+        }
+    </script>
+
+</body>
+</html>
+
